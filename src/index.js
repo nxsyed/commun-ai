@@ -66,11 +66,6 @@ class Chat extends React.Component{
     }
 
     componentDidMount() {
-
-        this.chat.on('message', (payload) => {
-            const reply = payload;
-            this.setState({ reply });
-        });
         this.bot.on('message', (payload) => {
             axios.get(`https://pubsub.pubnub.com/v1/blocks/sub-key/sub-c-890a0b26-6451-11e8-90b6-8e3ee2a92f04/chat?question=${payload.data.text}`)
             .then(response => {
@@ -80,7 +75,6 @@ class Chat extends React.Component{
                 });
             });
         });
-
     }
 
     handleKeyPress = (e) => {
@@ -91,17 +85,28 @@ class Chat extends React.Component{
 
     render() {
         return ( 
-            <div>
+            <div style={container}>
+                <div style={{height:100, width:100}}> 
+
+                <p> {this.state.reply} </p>
+
                 <Clippy
                     actor={ 'Clippy' } 
-                    animation={ this.state.animation }
-                    speak={ this.state.reply } />
-                <input id = "chat-input"
-                    type = "text"
-                    name = ""
-                    value = { this.state.chatInput } onChange = { this.setChatInput } onKeyPress = { this.handleKeyPress } /> 
-                <input type = "button"
-                onClick = { this.sendChat } value = "Send Chat" />
+                    animation={ this.state.animation } />
+
+                    <input id = "chat-input"
+                        type = "text"
+                        name = ""
+                        value = { this.state.chatInput } 
+                        onChange = { this.setChatInput } 
+                        onKeyPress = { this.handleKeyPress } /> 
+
+                    <input type = "button"
+                        onClick = { this.sendChat } 
+                        value = "Send Chat" />
+                        
+                </div>
+                
             </div>
         );
     }
@@ -124,3 +129,11 @@ ChatBot.on('$.ready', () => {
     );
 
 });
+
+const container = {
+    backgroundColor: '#f6e7ce',
+    display: 'flex', 
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+};
