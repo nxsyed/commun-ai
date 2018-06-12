@@ -3,6 +3,8 @@ Chatbot based off of IBM assistant which allows you to message for questions rel
 
 ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)   
 
+## [View My Article on Pubnub !](https://www.pubnub.com/blog/chatengine-chatbot-ibm-watson-assistant-tutorial/)
+
 ### Background
 > The idea behind commun to create a simple and easy to use assistant that can be built on top of. The connections are made possible with pubnub
 ### Installation
